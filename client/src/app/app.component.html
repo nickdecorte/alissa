@@ -1,0 +1,16 @@
+<nb-layout>
+  <nb-layout-header subheader>
+    <a (click)="toggle()">
+      <nb-icon icon="menu"></nb-icon>
+    </a>
+  </nb-layout-header>
+
+  <nb-sidebar [state]="sidebarState">
+    <nb-menu [items]="items">
+    </nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column class="colored-column-basic">
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

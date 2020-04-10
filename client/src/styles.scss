@@ -1,0 +1,31 @@
+@import 'themes';
+
+@import '~@nebular/theme/styles/globals';
+
+@import '../node_modules/flexboxgrid/dist/flexboxgrid.min.css';
+
+@include nb-install() {
+  @include nb-theme-global();
+};
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: right;
+}
+
+.nb-list-item {
+  border-bottom: 1px solid #edf1f7;
+    color: #222b45;
+    font-family: Open Sans, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    padding: 1rem;
+}
+
+.nb-theme-default nb-card-header {
+  padding: 1rem 1rem;
+}

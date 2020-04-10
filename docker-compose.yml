@@ -1,0 +1,35 @@
+version: '3'
+services:
+  mysql:
+    image: allisa-mysql
+    build:
+      context: services/mysql
+      args:
+        - MYSQL_VERSION=8.0
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - ${DATA_PATH_HOST}/mysql:/var/lib/mysql
+      - ./services/mysql/config/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+  server:
+    image: allisa-server
+    build:
+      context: server
+    ports:
+      - 8080:8080
+    environment:
+      WAIT_HOSTS: mysql:3306
+    depends_on:
+      - mysql
+    restart: on-failure
+  client:
+    image: allisa-client
+    build:
+      context: client
+    ports:
+      - 80:80
